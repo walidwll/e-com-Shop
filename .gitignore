@@ -10,9 +10,7 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-/public/img
-/config/paypal.php
-/config/stripe.php
+/public/img/upload
 /node_modules
 .idea/
 .phpcs-cache
