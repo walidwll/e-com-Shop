@@ -9,7 +9,7 @@ class Mailer
 
     private $twig;
 
-    public function __construct(\Swift_Mailer $swiftMailer, \Twig_Environment $twig)
+    public function __construct(\Swift_Mailer $swiftMailer, \Twig\Environment $twig)
     {
         $this->swiftMailer = $swiftMailer;
         $this->twig = $twig;
@@ -18,7 +18,7 @@ class Mailer
     public function orderConfirmation(User $user)
     {
         $message = (new \Swift_Message('Confirmation de commande'))
-            ->setFrom('send@example.com')
+            ->setFrom('wbrstore.noreply@gmail.com')
             ->setTo($user->getEmail())
             ->setBody(
                 $this->twig->render('emails/order_confirmation.html.twig'),

@@ -21,8 +21,8 @@
 <header class="mb-4">
     <h1>Livraison</h1>
 </header>
-
-{{ form_start(form, { 'attr': { 'id': 'form' } })  }}
+{{ form(form)}}
+{# {{ form_start(form, { 'attr': { 'id': 'form' } })  }}
     {% for shippingMethod in form.shippingMethod %}
         {% set index = shippingMethod.vars.value %}
         {% set entity = form.shippingMethod.vars.choices[index].data %}
@@ -35,7 +35,7 @@
             'label': label,
         }) }}
     {% endfor %}
-{{ form_end(form) }}
-<input type="submit" form="form" value="Suivant" class="btn btn-primary">
+{{ form_end(form) }} #}
+{# <input type="submit" form="form" value="Suivant" class="btn btn-primary"> #}
 
 {% endblock %}

@@ -1,6 +1,6 @@
 $theme-colors: (
-  "primary": #28bebe,
-  "danger": #be2828
+  "primary": #99f914,
+  "danger": #dd2d2d
 );
 
 $breadcrumb-divider: quote(">");
@@ -66,8 +66,8 @@ body {
 }
 
 .hero {
-    height: 600px;
-    background-image: url('/img/hero.jpg');
+    height: 100px;
+    
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

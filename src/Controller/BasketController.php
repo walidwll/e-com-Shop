@@ -36,14 +36,17 @@ class BasketController extends AbstractController
 
     public function add($id)
     {
+        
         $product = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->find($id);
+            ->getRepository(Product::class);
+        $product = $product->findOneBy(['id' => $id]);
+        
         
         if (!$product) {
             throw $this->createNotFoundException();
         }
 
+        
         if ($product->hasStock()) {
             $this->basket->add($product);
         } else {

@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class ProductController extends AbstractController
 {   
     
+    
     public function index(Request $req, $page,EntityManagerInterface $entityManager)
     {  
         
@@ -39,7 +40,7 @@ class ProductController extends AbstractController
         
         $totalResults = count($products);
         $totalPages = 1;
-        if ($totalResults > 0) {
+        if ($totalResults > 0) { 
             $totalPages = ceil($totalResults / $maxResults);
         }
 
@@ -56,25 +57,26 @@ class ProductController extends AbstractController
         $product = new Product();
         $title = 'Nouveau produit';
         
-        if ($id) {
-            $product = $this->getDoctrine()
-                ->getRepository(Product::class)
-                ->find($id);
+        // if (!$id) {
+        //     $product = $this->getDoctrine()
+        //         ->getRepository(Product::class);
+        //      $product = $product->findOneBy(['id' => $id]);
             
-            if (!$product) {
-                throw $this->createNotFoundException('Ce produit n\'existe pas');
-            }
+        //     if (!$product) {
+        //         // throw $this->createNotFoundException('Ce produit n\'existe pas');
+        //     }
             
-            $title = 'Modification d\'un produit';
-        } else {
+        //     $title = 'Modification d\'un produit';
+        // } else {
             $product->addImage(new Image());
-        }
+        // }
 
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($req);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            
             foreach ($product->getImages() as $image) {
                 if ($file = $image->getFile()) {
                     $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());

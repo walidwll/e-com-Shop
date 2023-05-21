@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <link rel="icon" href="/img/final.png" type="image/x-icon">
+        <link rel="icon" href="img/wbshop.png" type="image/x-icon">
         <title>{% block title %}E-commerce{% endblock %}</title>
         <meta name="viewport" content="width=device-width initial-scale=1.0">
         <meta name="description" content="E-commerce">
@@ -49,7 +49,9 @@
         </header>
         
         {% if app.request.attributes.get('_route') == 'index' %}
-            <div class="hero"></div>
+        <section class="hero" style="background-image: url('/img/banner1.jpg'),url('/img/banner.png'); height: 500px;background-size: cover;background-position: center center;background-repeat: no-repeat; ">
+        </section>
+           
         {% endif %}
         
         {% block breadcrumb %}{% endblock breadcrumb %}

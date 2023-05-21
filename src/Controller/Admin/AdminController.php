@@ -17,6 +17,7 @@ class AdminController extends AbstractController
             ->getRepository(Transaction::class)
             ->sumAll();
 
+
         return $this->render('admin/index.html.twig', [
             'product_rows' => $productRows,
             'total_revenue' => $totalRevenue,

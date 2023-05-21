@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Basket;
+use App\Entity\ShippingMethod;
 use App\Form\AddressType;
 use App\Repository\AddressRepository;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -82,15 +83,19 @@ class CheckoutController extends AbstractController
         if (!$this->session->get('checkout/address')) {
             return $this->redirectToRoute('basket_show');
         }
+        $shipping = new ShippingMethod();
 
-        $form = $this->createForm(\App\Form\ShippingMethodType::class, null);
+        $form = $this->createForm(\App\Form\ShippingMethodType::class,$shipping);
 
         $form->handleRequest($req);
+        // dd($form);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $shippingMethod = $form->getData()['shippingMethod'];
+            // $shippingMethod = $form->getData()['shippingMethod'];
+            $shippingMethod = $form->getData();
+            // dd($shippingMethod);
             
-            $this->basket->addShippingMethod($shippingMethod);
+            $this->basket->addShippingMethod($shippingMethod); 
 
             $this->session->set('checkout/shipping', true);
 
@@ -112,13 +117,13 @@ class CheckoutController extends AbstractController
         $products = $this->basket->getProducts();
         $totalPrice = $this->basket->totalPrice($products);
         $vatPrice = $this->basket->vatPrice($this->basket->grandTotal());
-        $shippingFee = $this->basket->getShippingMethod()->getFee();
+        // $shippingFee = $this->basket->getShippingMethod()->getFee();
         $grandTotal = $this->basket->grandTotal();
         
         return $this->render('shop/checkout/summary.html.twig', [
             'products' => $products,
             'total_price' => $totalPrice,
-            'shipping_fee' => $shippingFee,
+            // 'shipping_fee' => $shippingFee,
             'vat_price' => $vatPrice,
             'grand_total' => $grandTotal,
         ]);

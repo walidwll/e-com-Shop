@@ -56,14 +56,14 @@
         <p>
             <span class="font-weight-bold">Sous total:</span> {{ total_price }} €
         </p>
-        <p>
+        {# <p>
             <span class="font-weight-bold">Livraison:</span>
             {% if shipping_fee == 0 %}
                 gratuite
             {% else %}
                 {{ shipping_fee }} €
             {% endif %}
-        </p>
+        </p> #}
         <p>
             <span class="font-weight-bold">Dont TVA:</span>
             {{ vat_price }} €

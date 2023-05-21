@@ -65,6 +65,7 @@ class StripeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($order);
         $em->flush();
+        dd($em);
         
         $mailer->orderConfirmation($user);
 
